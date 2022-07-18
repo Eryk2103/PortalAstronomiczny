@@ -1,0 +1,14 @@
+
+
+<app-category (selectedCategory)="changeCategory($event)" ></app-category>
+<br>
+<mat-form-field appearance="fill">
+    <mat-label>Equipment</mat-label>
+    <mat-select [disabled]="!displayEquipment" [formControl]="selected">
+      
+      <mat-option *ngFor="let eq of filteredEquipment" [value]="eq">
+        {{eq.name}} 
+      </mat-option>
+    </mat-select>
+</mat-form-field>
+<button class="btn btn-success m-3" (click)="addEquipment()">Add</button>

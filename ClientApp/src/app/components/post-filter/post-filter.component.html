@@ -1,0 +1,23 @@
+<mat-card>
+   <mat-card-title>
+       Filter
+   </mat-card-title>
+   <mat-chip-list>
+    <mat-chip *ngFor="let eq of equipment" >
+      {{eq.name}}<a (click)="remove(eq)"><mat-icon class="m-1">cancel</mat-icon></a>
+    </mat-chip>
+    
+  </mat-chip-list>
+  <hr>
+   <h3>Filter by Equipment</h3>
+   <app-equipment-select (selectedEquipment)="addEquipment($event)"></app-equipment-select>
+   <hr>
+   <h3>Search</h3>
+  <mat-form-field [formGroup]="form">
+    <input matInput  placeholder="Search" formControlName="queryForm">
+  </mat-form-field>
+  <br>
+  
+  <br>
+   <button class="btn btn-primary" (click)="filter()"filter>Filter</button>
+</mat-card>

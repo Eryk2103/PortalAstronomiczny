@@ -1,0 +1,34 @@
+
+
+ <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+    <mat-chip-list>
+        <mat-chip *ngFor="let tag of tags" class="m-2">
+                {{tag}}<a (click)="remove(tag)"><mat-icon class="m-1">cancel</mat-icon></a>
+        </mat-chip>
+    </mat-chip-list>
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Event</mat-label>
+        <textarea matInput id="content" formControlName="content"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Date of event</mat-label>
+        <input matInput [matDatepicker]="picker"
+               (dateInput)="addEvent($event)" (dateChange)="addEvent($event)" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="">
+        <mat-label>Tags</mat-label>
+        <input matInput formControlName="tags"/>
+    </mat-form-field>
+    <button class="btn btn-success m-3" (click)="addTag()">Add</button>
+    <div class="form-group commands">
+        <button type="submit" (click)="onSubmit()" class="btn btn-success">
+            Create</button>
+
+    </div>    
+
+</div>
+

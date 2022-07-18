@@ -1,0 +1,25 @@
+
+<div *ngIf="role | async as r">
+    <button *ngIf="r=='Redactor'" class="btn btn-light" [routerLink]="['/calendar/AddCalendar']">Add event</button>
+</div>
+
+<div *ngIf="calendars">
+<div *ngFor="let element of calendars" >
+    <div class='calendar'>
+    <mat-card>
+        <mat-card-title> <p class="date">{{element.date | date:'fullDate'}}</p></mat-card-title>
+        <mat-chip-list>
+            <mat-chip *ngFor="let tag of arr(element.tags)" class="m-2" [routerLink]="['/posts/',tag]">
+                    {{tag}}
+            </mat-chip>
+        </mat-chip-list>
+        <mat-card-content>
+            {{element.content}}
+            
+        </mat-card-content>
+        <mat-card-actions >
+            
+        </mat-card-actions>
+    </mat-card></div>
+</div>
+</div>

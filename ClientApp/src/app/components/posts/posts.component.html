@@ -1,0 +1,46 @@
+<p *ngIf="!posts"><em>Loading...</em></p>
+<div class="row">
+  <div class="col">
+ <button mat-button class="btn btn-primary" [matMenuTriggerFor]="menu">Sort</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="likesHL()" >Likes: high to low</button>
+    <button mat-menu-item (click)="dateAddedLH()" >New</button>
+ 
+
+  </mat-menu>
+ 
+  <button *ngIf="isAuthenticated | async"  class="btn btn-light add" type="submit" [routerLink]="['/post']" >Add post</button>
+
+  
+  <div *ngFor="let post of obs | async" class="posts-card">
+    <mat-card >
+        <mat-card-header>
+          <mat-card-title>{{post.title}}<p class="post-date">{{post.dateAdded | timePast}}</p></mat-card-title>
+        </mat-card-header>
+          <img mat-card-image src={{post.photo}} [routerLink]="['/post',post.id,'detail']">
+          <div class="thumb-up"><mat-icon>thumb_up</mat-icon> <span class="like-counter"> {{post.likes}}</span></div>
+        <mat-card-actions>
+          <div *ngIf="(isAuthenticated | async) && likedPosts" class="row">
+            <div class="col-sm-2">
+            <button *ngIf="!check(post.id)" class="btn btn-light" (click)="like(post)">Like</button>
+            <button *ngIf="check(post.id)" class="btn btn-primary" (click)="like(post)">Like</button>
+          </div>
+          <div class="col-sm-2">
+            <app-delete [objTypeToDelete]="'Post'" [id]="post.id"></app-delete>
+          </div>
+            
+          </div>
+        <div *ngIf="!(isAuthenticated | async)">
+            <button [routerLink]="['/authentication/login']" class="btn btn-light">Like</button>
+            
+          </div>
+        </mat-card-actions>
+    </mat-card>
+  </div>
+ <mat-paginator  (page)="getData($event)" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+</div>
+<div class="col">
+  <app-post-filter (columnNameEmit)="filterColumn=$event" (queryEmit)="loadData($event)" (equipmentToFilter)="filter($event)"></app-post-filter>
+</div>
+</div>
+

@@ -1,0 +1,10 @@
+.post-date{
+    position: absolute;
+      top: 8px;
+      right: 16px;
+      font-size: 12px;
+  }
+  
+h3{
+  font-weight: bold;
+}

@@ -1,0 +1,14 @@
+
+<mat-card>
+    <mat-card-title>
+        Filter
+    </mat-card-title>
+    <mat-form-field>
+        <input matInput (keyup)="search($event.target.value)" placeholder="Search" >
+    </mat-form-field>
+    <br>
+    <app-category (selectedCategory)="category=$event"></app-category>
+    <br>
+    <button class="btn btn-primary" (click)="filter()"filter>Filter</button>
+ </mat-card>
+ 

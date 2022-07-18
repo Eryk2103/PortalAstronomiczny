@@ -1,0 +1,18 @@
+<div [formGroup]="form">
+    <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="parentCategory">
+            <mat-option value="null">
+                Main category
+            </mat-option>
+          <mat-option *ngFor="let category of mainCategories" [value]='category.id'>
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required placeholder="">
+    </mat-form-field>
+    <button class="btn btn-success" (click)="add()">Add</button>
+</div>

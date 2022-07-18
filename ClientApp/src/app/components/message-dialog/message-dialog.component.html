@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Messages</h1>
+<div *ngIf="!addMessageToggle">
+  
+<button class="btn btn-light btn-sm" (click)="addMessage()">Send message</button>
+<div *ngIf="messages" mat-dialog-content class="container">
+ 
+  <hr>
+  <div *ngFor="let msg of obs | async" >
+    <mat-card class="msg">
+    @{{msg.sender.userName}}
+   <p> {{msg.date | date: 'short'}}</p> 
+    <br>
+    <mat-card-content>
+      {{msg.message}}
+    </mat-card-content>
+  </mat-card>
+  </div>
+  <button mat-dialog-close class="btn btn-secondary btn-sm">Close</button>
+</div>
+<mat-paginator (page)="loadData($event)" [pageSize]="5"></mat-paginator>
+</div>
+
+<div *ngIf="addMessageToggle">
+    <app-add-message (closeAddView)="close($event)"></app-add-message>
+</div>

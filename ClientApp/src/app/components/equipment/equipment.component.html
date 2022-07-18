@@ -1,0 +1,64 @@
+<div *ngIf="role | async as r">
+<mat-expansion-panel *ngIf="r=='Redactor'">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Add new equipment that isn't displayed in the table below
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <app-add-equipment (equipment)="addEquipment($event)"></app-add-equipment>
+</mat-expansion-panel>
+</div>
+<br>
+<app-equipment-filter (queryEmit)="loadData($event)" (selectedCategory)="filterCategory($event)"></app-equipment-filter>
+<br>
+<table  mat-table [dataSource]="equipment" class="mat-elevation-z8" matSort (matSortChange)="loadData()" matSortActive="{{defaultSortColumn}}" matSortDirection="{{defaultOrder}}">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+      <td mat-cell *matCellDef="let element">  
+      <mat-expansion-panel class="mat-elevation-z0 m-3">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{element.name}} ({{element.category.name}})
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+            Specification
+            <hr>
+           <div [innerHtml]="element.specification"></div>
+      </mat-expansion-panel>
+       
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="likes">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Likes </th>
+      <td mat-cell *matCellDef="let element"> {{element.likes}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element"> 
+        <div class="row">
+        <button class="btn btn-secondary btn-sm" [routerLink]="['/equipment/',element.id, 'detail']" >Comments</button>
+        <div *ngIf="likedEquipment">
+
+          <div class="">
+            <div class="">
+              <button *ngIf="!check(element.id)" class="btn btn-light btn-sm" (click)="like(element)">Like</button>
+              <button *ngIf="check(element.id)" class="btn btn-primary btn-sm" (click)="like(element)">Like</button>
+            </div>
+          <div class="">
+            <app-delete [objTypeToDelete]="'Equipment'" [id]="element.id"></app-delete>
+          </div> 
+        </div>
+      </div>
+      </div>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [hidden]="!equipment" (page)="getData($event)" [pageSize]="10" [pageSizeOptions]="[10,25,50]" showFirstLastButtons></mat-paginator>

@@ -1,0 +1,27 @@
+.posts-card {
+    max-width: 500px;
+    padding: 20px;
+  }
+.green {
+  background-color: green;
+}
+.red {
+  background-color:  red;
+}
+.post-date{
+  position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 12px;
+}
+.add{
+  margin: 15px;
+}
+.thumb-up{
+  position: relative;
+}
+.like-counter{
+  position: absolute;
+  top: 0;
+  margin-left: 5px;
+}

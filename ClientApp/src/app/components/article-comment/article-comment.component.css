@@ -1,0 +1,10 @@
+.comment{
+    margin: 20px;
+}
+
+.date{
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 12px;
+  }

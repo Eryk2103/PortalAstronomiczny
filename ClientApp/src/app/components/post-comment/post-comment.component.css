@@ -1,0 +1,9 @@
+.date{
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 16px;
+}
+.comment{
+    padding:20px;
+}

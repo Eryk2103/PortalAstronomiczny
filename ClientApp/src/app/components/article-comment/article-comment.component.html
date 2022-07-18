@@ -1,0 +1,19 @@
+<h1>Comments</h1>
+<button *ngIf="isAuthenticated | async"type="submit" (click)="addComment()" class="btn btn-light">Add comment</button>
+
+<div *ngFor="let comment of comments">
+    <div class='comment'>
+    <mat-card>
+        <mat-card-title>{{comment.user.userName}} <p class="date">{{comment.commentDate | timePast}}</p></mat-card-title>
+        <mat-card-subtitle *ngIf="comment.parentCommentId" >@{{comment.parentCommentName}}</mat-card-subtitle>
+        <mat-card-content>
+            {{comment.content}}
+            
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="btn btn-secondary" *ngIf="isAuthenticated | async" [routerLink]="['/article/',this.id,'AddComment', comment.id]">REPLY</button>
+            <app-delete [objTypeToDelete]="'ArticelComment'" [id]="comment.id"></app-delete>
+        </mat-card-actions>
+    </mat-card></div>
+   
+</div>

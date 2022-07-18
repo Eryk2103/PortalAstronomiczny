@@ -1,0 +1,39 @@
+
+<h2>Change user role to redactor</h2>
+<hr>
+<div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="userName">User name: </label>
+    <br/>
+    <input type="text" id="userName" formControlName="userName" 
+        required placeholder="User name..." class="form-control"/>
+
+    </div>
+    <div class="form-group commands">
+        <button type="submit" (click)="changeToRedactor()" class="btn btn-success">
+            Change</button>
+
+    </div>    
+</div>
+<h2>Remove redactor role from user</h2>
+<hr>
+<div class="form" [formGroup]="form2" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="userName2">User name: </label>
+    <br/>
+    <input type="text" id="userName2" formControlName="userName2" 
+        required placeholder="User name..." class="form-control"/>
+
+    </div>
+    <div class="form-group commands">
+        <button type="submit" (click)="changeToRegisteredUser()" class="btn btn-success">
+            Change</button>
+
+    </div>    
+</div>
+<h2>Add new category</h2>
+<hr>
+<app-add-category></app-add-category>
+<div *ngIf="message">
+    <p>{{message}}</p>
+</div>

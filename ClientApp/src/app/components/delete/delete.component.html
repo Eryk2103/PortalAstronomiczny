@@ -1,0 +1,3 @@
+<div *ngIf="role | async as r">
+    <button *ngIf="r=='Administrator'" class="btn btn-danger" (click)="delete()">Delete</button>
+</div>

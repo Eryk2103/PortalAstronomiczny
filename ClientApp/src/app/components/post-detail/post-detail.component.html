@@ -1,0 +1,23 @@
+<mat-card  *ngIf="post" class="posts-card">
+    <mat-card-header>
+      <mat-card-title>{{post.title}}<p class="post-date">{{post.dateAdded | timePast}}</p></mat-card-title>
+      <mat-card-subtitle>{{post.celestialBoddy}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src={{post.photo}}>
+    <mat-card-content>
+      <h2>Information about the image</h2>
+      <p>
+        {{post.content}}
+      </p>
+      <hr>
+      <h2>List of equipment the image has been taken with</h2>
+      {{equipment}}
+      <hr>
+      <p class="user-name">Post created by {{post.userName}}</p>
+    </mat-card-content>
+    <mat-card-actions *ngIf="email">
+      <button *ngIf="post.userName === userName" [routerLink]="['/post',post.id]">Edit</button>
+    </mat-card-actions>
+    <app-post-comment></app-post-comment>
+  </mat-card>
+  

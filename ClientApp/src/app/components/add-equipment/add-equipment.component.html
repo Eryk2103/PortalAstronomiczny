@@ -1,0 +1,30 @@
+
+<div [formGroup] = "form">
+    <div *ngIf="successMsg">
+        <p class="alert alert-success">
+            Equipment added successfully!
+        </p>
+    </div>
+    <div *ngIf="errorMsg">
+        <p class="alert alert-danger">
+            Equipment with this name already exists try selecting it from select list above!
+        </p>
+    </div>
+    
+        <app-category (selectedCategory)="category=$event"></app-category>
+      <br>
+      <mat-form-field appearance="fill" class="">
+        <mat-label>Name</mat-label>
+        <input required matInput formControlName="name"/>
+    </mat-form-field>
+    <br>
+      <mat-form-field appearance="fill" class="w-100" >
+        <mat-label>Specfication</mat-label>
+        <textarea formControlName="specification" matInput required></textarea>
+      </mat-form-field>
+
+
+      <button class="btn btn-success" (click)="onSubmit()">Add</button>
+</div>
+        
+          

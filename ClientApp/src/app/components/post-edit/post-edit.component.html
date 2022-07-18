@@ -1,0 +1,44 @@
+<div class="post-edit">
+    <p *ngIf="this.id &&!post"><em>Loading...</em></p>
+    <h1>{{title}}</h1>
+    <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" required placeholder="ex. eclipse">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Short information</mat-label>
+            <textarea matInput id="content" formControlName="content" required placeholder="ex. This is a pohto of eclipse" ></textarea>
+          </mat-form-field>
+        <br>
+          <mat-form-field appearance="fill" class="w-50">
+            <mat-label>Information on what the image presents</mat-label>
+        <input matInput formControlName="celestialBoddy" required placeholder="ex. Mars, Sun">
+        </mat-form-field>
+        <hr>
+        <h4>Select equipment you used to take the image with</h4>
+        <app-equipment-select (selectedEquipment)="addEquipment($event)"></app-equipment-select>
+        <hr>
+        <div *ngIf="equipmentArray">
+        <p>List of equipment used to take this image</p>
+        <mat-nav-list >
+            <mat-list-item *ngFor="let eq of equipmentArray">
+                {{eq.name}}<button class="btn btn-danger m-3 right" (click)="deleteEquipment(eq)">Delete</button>
+                  
+            </mat-list-item>
+        </mat-nav-list>
+        </div>
+        <br>
+        
+        
+    </div>
+    <br>
+    <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+    <div class="form-group commands">
+        <button *ngIf="id" type="submit" (click)="onSubmit()" class="btn btn-succes">Save</button>
+        <button *ngIf="!id" type="submit" (click)="onSubmit()" class="btn btn-succes">Create</button>
+        <button type="submit" [routerLink]="['/posts']" class="btn">Cancel</button>
+    </div>
+    
+</div>

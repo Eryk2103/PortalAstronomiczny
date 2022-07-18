@@ -1,0 +1,61 @@
+<header>
+  <nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+  >
+    <div class="container">
+      <!--<a class="navbar-brand" [routerLink]="['/']">PortalAstronomiczny</a>-->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-center"
+        [ngClass]="{ show: isExpanded }"
+      >
+        
+        <ul  class="navbar-nav flex-grow">
+          
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/posts']">Posts</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/equipment']">Equipment</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/articles']">Articles</a>
+          </li >
+          
+          <li  class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/calendar']">Calendar</a>
+          </li>
+          <div *ngIf="role | async as r">
+            <li *ngIf="r=='Administrator'" class="nav-item" [routerLinkActive]="['link-active']">
+              <a class="nav-link text-dark" [routerLink]="['/dashboard']">Dashboard</a>
+            </li>
+          </div>
+          
+
+        </ul>
+        
+        
+      </div>
+
+        <app-login-menu></app-login-menu>
+        <div *ngIf="isAuthenticated | async">
+          <app-message ></app-message>
+        </div>
+        
+        
+        
+      
+      
+    </div>
+  </nav>
+</header>

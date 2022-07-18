@@ -1,0 +1,23 @@
+<div class="post-edit">
+    <p *ngIf="this.id &&!article"><em>Loading...</em></p>
+    <h1>{{title}}</h1>
+    <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <br />
+            <input type="text" id="title" formControlName="title" required placeholder="Post title..." class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <br />
+            <textarea type="text" id="content" formControlName="content" required placeholder="Post content..." class="form-control"></textarea>
+        </div>
+    </div>
+    <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+    <div class="form-group commands">
+        <button *ngIf="id" type="submit" (click)="onSubmit()" class="btn btn-succes">Save</button>
+        <button *ngIf="!id" type="submit" (click)="onSubmit()" class="btn btn-succes">Create</button>
+        <button type="submit" [routerLink]="['/articles']" class="btn">Cancel</button>
+    </div>
+    
+</div>

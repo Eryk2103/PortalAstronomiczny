@@ -1,0 +1,19 @@
+<mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="initialCategoryValue">
+      <mat-option><p (click)="clear()">-</p></mat-option>
+      <mat-option *ngFor="let category of mainCategories" [value]='category'>    
+        <p (click)="changeCategory(category)">{{category.name}}</p>
+      </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Sub category</mat-label>
+    <mat-select [(ngModel)]="initialSubCategoryValue">
+      <mat-option><p value="">-</p></mat-option>
+      <mat-option *ngFor="let category of subCategories" [value]='category'>
+        <p (click)="emit(category)">{{category.name}}</p>
+      </mat-option>
+    </mat-select>
+</mat-form-field>
